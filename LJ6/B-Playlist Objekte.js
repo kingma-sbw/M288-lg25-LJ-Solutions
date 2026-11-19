@@ -16,37 +16,41 @@ function formatDuration(duration) {
 }
 
 // ===== 1. alle Titel =====
-tracks.forEach( (track, index) => {
-  console.log(`${index+1}. ${track.title} – (${formatDuration(track.seconds)})`)
-})
+tracks.forEach((track, index) => {
+  console.log(
+    `${index + 1}. ${track.title} – ${track.artist} (${formatDuration(track.seconds)})`,
+  );
+});
 
 // ===== 2. Gesamtdauer =====
-let totalSeconds = 0;
-tracks.map( track => totalSeconds += track.seconds )
-console.log(`Gesamtdauer: ${formatDuration(totalSeconds)}`)
+const totalSeconds = tracks.reduce((sum, track) => sum + track.seconds, 0);
+console.log(`Gesamtdauer: ${formatDuration(totalSeconds)}`);
 
 // ===== 3. längster Titel =====
 const indexLongest = tracks.reduce(
-  (best, track, i) => track.seconds > tracks[best].seconds ? i : best,
-  0
+  (longest, track, index) =>
+    track.seconds > tracks[longest].seconds ? index : longest,
+  0,
 );
-console.log(`Längster Titel: ${tracks[indexLongest].title} (${formatDuration(tracks[indexLongest].seconds)})`)
+console.log(
+  `Längster Titel: ${tracks[indexLongest].title} (${formatDuration(tracks[indexLongest].seconds)})`,
+);
 
 // ===== 4. Anzahl pro Genre (Objekt countByGenre) =====
-const countByGenres = {}
-tracks.forEach( track => {
-  if(countByGenres.hasOwnProperty(track.genre) )
-  countByGenres[track.genre] ++
-  else
-  countByGenres[track.genre] = 1
-})
-// sortieren nach Genre count
-const sortedGenres = Object.entries(countByGenres).sort((a,b) => b[1] - a[1])
-sortedGenres.forEach( ([genre, count]) => console.log(`- ${genre}: ${count}`) ) 
+const countByGenre = {};
+tracks.forEach((track) => {
+  if (countByGenre.hasOwnProperty(track.genre)) {
+    countByGenre[track.genre].count++;
+  } else {
+    countByGenre[track.genre] = { count: 1 };
+  }
+});
 
+for (const genre in countByGenre) {
+  console.log(`${genre}: ${countByGenre[genre].count}`);
+}
 
 // ===== 5. Werte der Eigenschaft aus sortField =====
-const selectedFieldValues = tracks.map( track => track[sortField] )
-console.log(`${selectedFieldValues.join(", ")}`)
+const arrayField = tracks.map((track) => track[sortField]);
 
-
+console.log(arrayField.join(", "));
