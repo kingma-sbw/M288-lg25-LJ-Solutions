@@ -17,7 +17,7 @@ function formatDuration(duration) {
 
 // ===== 1. alle Titel =====
 tracks.forEach( (track, index) => {
-  console.log(`${index+1}. ${track.title} – ${formatDuration(track.seconds)}`)
+  console.log(`${index+1}. ${track.title} – (${formatDuration(track.seconds)})`)
 })
 
 // ===== 2. Gesamtdauer =====
@@ -40,12 +40,13 @@ tracks.forEach( track => {
   else
   countByGenres[track.genre] = 1
 })
-// sortieren nach Genre value
+// sortieren nach Genre count
 const sortedGenres = Object.entries(countByGenres).sort((a,b) => b[1] - a[1])
-console.log("Anzahl pro Genre:")
 sortedGenres.forEach( ([genre, count]) => console.log(`- ${genre}: ${count}`) ) 
+
 
 // ===== 5. Werte der Eigenschaft aus sortField =====
 const selectedFieldValues = tracks.map( track => track[sortField] )
-console.log(`Werte der Eigenschaft «${sortField}»: ${selectedFieldValues.join(", ")}`)
+console.log(`${selectedFieldValues.join(", ")}`)
+
 
