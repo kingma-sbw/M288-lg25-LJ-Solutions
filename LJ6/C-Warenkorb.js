@@ -11,7 +11,7 @@ const actions = [
 const cart = {
   items: [],
   // add if not existing, else increase quantity
-  add: function (name, price, quantity) {
+  add(name, price, quantity) {
     const existingItem = this.items.find((item) => item.name === name);
     if (existingItem) {
       existingItem.quantity += quantity;
@@ -21,7 +21,7 @@ const cart = {
   },
 
   // remove item by name
-  remove: function (name) {
+  remove(name) {
     const index = this.items.findIndex((item) => item.name === name);
     if (index !== -1) {
       this.items.splice(index, 1);
@@ -31,12 +31,12 @@ const cart = {
   },
 
   // count total items
-  count: function () {
+  count() {
     return this.items.reduce((total, item) => total + item.quantity, 0);
   },
 
   // calculate total price
-  total: function () {
+  total() {
     return this.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   },
 };
