@@ -75,3 +75,6 @@ formElement.addEventListener("submit", async (event) => {
   event.preventDefault();
   showBoard(stationElement.value);
 });
+
+// initialer Anzeige
+showBoard(stationElement.value)
