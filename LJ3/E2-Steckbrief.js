@@ -30,6 +30,21 @@ skills.forEach( (skill) => {
   skillList.appendChild(li)
 })
 
+/* Alternative Lösung mit CSS-Selektor, or firstElementChild:
+const skillList = document.querySelector("#skills")
+skills.forEach( (skill) => {
+  const li = document.createElement("li")
+  li.textContent = skill
+  skillList.appendChild(li)
+})
+
+const firstSkill = document.querySelector("#skills li:first-child")
+firstSkill.classList.add("main-skill")
+
+-- or --
+
+skillList.firstElementChild?.classList.add("main-skill")
+*/
 
 // ===== 4. Anzahl =====
 const skillCountElement = document.querySelector("#skill-count")
