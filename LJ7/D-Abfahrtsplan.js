@@ -38,7 +38,8 @@ function formatTime(time) {
 function createRow(departure, line, direction, platform, delay) {
   const row = document.createElement("tr");
   const timeCol = document.createElement("td");
-  timeCol.textContent = `${departure} +${delay}'`;
+  const delayText = delay>0 ? ` +${delay}'` : "";
+  timeCol.textContent = `${departure}${delayText}`;
   const lineCol = document.createElement("td");
   lineCol.textContent = line;
   const toCol = document.createElement("td");
